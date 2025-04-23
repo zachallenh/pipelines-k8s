@@ -28,7 +28,3 @@ variable "gcp_creds" {
   type = string
   default = null
 }
-
-variable "GOOGLE_CREDENTIALS" {
-  type = string
-}
