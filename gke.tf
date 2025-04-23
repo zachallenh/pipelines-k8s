@@ -5,7 +5,7 @@ data "google_compute_zones" "available" {}
 
 data "google_container_engine_versions" "gke_version" {
   location       = var.region
-  version_prefix = "1.27."
+  version_prefix = "1.32."
 }
 
 resource "google_container_cluster" "engineering" {
@@ -26,7 +26,7 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
   cluster  = google_container_cluster.engineering.name
   location = data.google_compute_zones.available.names.0
 
-  version    = data.google_container_engine_versions.gke_version.release_channel_default_version["STABLE"]
+  version    = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
   node_count = var.node_count
 
   node_config {
@@ -41,5 +41,9 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
     ]
+
+    # reservation_affinity {
+    #   consume_reservation_type = "NO_RESERVATION"
+    # }
   }
 }
