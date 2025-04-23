@@ -4,7 +4,7 @@
 terraform {
   cloud {
     workspaces {
-      name = "pipeline-k8s"
+      name = "pipelines-k8s"
       project = "sandbox"
     }
   }
@@ -23,4 +23,5 @@ terraform {
 provider "google" {
   project = var.google_project
   region  = var.region
+  credentials = var.gcp_creds
 }

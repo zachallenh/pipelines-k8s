@@ -23,3 +23,7 @@ variable "node_count" {
   description = "Number of nodes in the node pool"
   default     = 3
 }
+
+variable "gcp_creds" {
+  type = string
+}
