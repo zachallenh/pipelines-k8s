@@ -42,6 +42,13 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
       "https://www.googleapis.com/auth/monitoring",
     ]
 
+    kubelet_config {
+      cpu_cfs_quota = false
+      cpu_cfs_quota_period = ""
+      cpu_manager_policy = ""
+      pod_pids_limit = 0
+    }
+
     # reservation_affinity {
     #   consume_reservation_type = "NO_RESERVATION"
     # }
